@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+    <title>CSS Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="fondo"></div>
+    <div class="reloj">
+        <div class="cara">
+        <div class="brazo minutero"></div>
+        <div class="brazo segundero"></div>
+        <div class="brazo horario"></div>
+        </div>
+    </div>
+</body>
+<script>
+    const segundero = document.querySelector(".segundero");
+    const horario = document.querySelector(".horario");
+    const minutero = document.querySelector(".minutero");
+function setDate () {
+    const now = new Date();
+    const segundos = now.getSeconds();
+    const minutos = now.getMinutes();
+    const horas = now.getHours();
+    const fondo = document.querySelector(".fondo");
+    const segundosDegree = ((segundos /  60) * 360) + 90;
+    const minutosDegree = ((minutos / 60) * 360) + 90;
+    const horasDegree = ((horas / 12) * 360) + 90;
+    segundero.style.transform = `rotate(${segundosDegree}deg)`;
+    minutero.style.transform = `rotate(${minutosDegree}deg)`;
+    horario.style.transform = `rotate(${horasDegree}deg)`;
+    fondo.style.transform = `rotate(${segundosDegree}deg)`;
+    if(seconds==0){
+    segundero.style.transitionDuration = '0s';
+    minutero.style.transitionDuration = '0s';
+    horario.style.transitionDuration = '0s';
+    } else {
+   segundero.style.transitionDuration = '0.05s';
+   minutero.style.transitionDuration = '0.05s';
+   horario.style.transitionDuration = '0.05s';
+    }
+}
+setInterval(setDate, 1000);
+</script>
+</html>
